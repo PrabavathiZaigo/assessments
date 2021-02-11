@@ -1,5 +1,5 @@
 
-  @extends('backend.layouts.app')
+@extends('backend.layouts.app')
 
 @section('content')
 <div class="container">
@@ -90,6 +90,9 @@
         </div>
     </div>
 </div>
+@if(session("success"))
+    <p>{{session("Success")}}
+@endif
 @endsection
   
 

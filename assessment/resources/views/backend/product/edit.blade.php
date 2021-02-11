@@ -1,4 +1,3 @@
-
 @extends('backend.layouts.app')
 
 @section('content')
@@ -6,20 +5,20 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Product') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('customers.update') }}">
+                    <form method="POST" action="{{ route('products.update') }}" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <input type="hidden" name="id" value="{{$data['id'] }}" />
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="product_name" class="col-md-4 col-form-label text-md-right">{{ __('Product Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $data['name'] }}" required autocomplete="name" autofocus>
+                                <input id="product_name" type="text" class="form-control @error('product_name') is-invalid @enderror" name="product_name" value="{{ $data['product_name'] }}" required autocomplete="product_name" autofocus>
 
-                                @error('name')
+                                @error('product_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -28,12 +27,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="sku" class="col-md-4 col-form-label text-md-right">{{ __('SKU') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $data['email']) }}" required autocomplete="email">
+                                <input id="sku" type="text" class="form-control @error('sku') is-invalid @enderror" name="sku" value="{{ $data['sku'] }}" required autocomplete="sku">
 
-                                @error('email')
+                                @error('sku')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -42,35 +41,28 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="quantity" type="text" class="form-control @error('quantity') is-invalid @enderror" name="quantity" value="{{ $data['quantity'] }}" required autocomplete="quantity" autofocus>
 
-                                @error('password')
+                                @error('quantity')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
-                       
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="product_image" class="col-md-4 col-form-label text-md-right">{{ __('Product Image') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="phone_number" type="number" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ $data['phone_number'] }}" required autocomplete="new-password">
-
-                                @error('phone_number')
+                                <input id="product_image" type="file" class="form-control @error('product_image') is-invalid @enderror" name="product_image" value="" required autocomplete="product_image" autofocus>
+                                @if (strpos($data['product_image'], '.jpg') !== false || strpos($data['product_image'], '.gif') !== false || strpos($data['product_image'], '.png') !== false || strpos($data['product_image'], '.jpeg') !== false || strpos($data['product_image'], '.svg') !== false)
+                                    <img target="_blank" src="{{ asset('storage/images/'.$data['product_image']) }}" style="width:20%;  height:30px; border-radius: 50% "/>
+                                @endif 
+                                @error('product_image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

@@ -38,7 +38,7 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Users
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -46,19 +46,25 @@
               <li class="nav-item">
                 <a href="{{route('admins.index')}}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>admin</p>
+                  <p>Admin</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('managers.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>manager</p>
+                  <p>Manager</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('customers.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>customer</p>
+                  <p>Customer</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('products.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Product</p>
                 </a>
               </li>
             </ul>

@@ -11,6 +11,10 @@
 @csrf
 <input type="submit" value="add customer" class="btn btn-info mb-3"/>
 </form>
+<form action="{{route('products.create')}}" method="">
+@csrf
+<input type="submit" value="add product" class="btn btn-info mb-3"/>
+</form>
 <table border='2'>
     <tr>
         <th>Id</th>
@@ -33,16 +37,18 @@
     <td><form action="{{route('admins.destroy',['id' => $model1['id']])}}" method="post">
     @csrf
     @method('DELETE')
-    <input type="submit" value="delete" /></form></td></tr>
-    </tr>
+    <input type="submit" value="delete" /></form></td>
     
+</tr>
     @empty
     
 @endforelse
+{{$model->links()}}
 </table>
 
-{{$model -> links()}}
+
 @endsection
+
   
 
 

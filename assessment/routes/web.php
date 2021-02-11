@@ -4,6 +4,9 @@
 use App\Http\Controllers\backend\AdminController;
 use App\Http\Controllers\backend\ManagerController;
 use App\Http\Controllers\backend\CustomerController;
+use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\frontend\ProductsController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('index',[ProductsController::class,'index'])->name('index');
 
 
 Route::group(['prefix' => 'admins', 'as' => 'admins.','middleware' => 'auth' ],
@@ -59,6 +64,21 @@ function (){
     Route::get('edit/{id}',[CustomerController::class,'edit'])->name('edit');
 
 });
+
+
+Route::group(['prefix' => 'products', 'as' => 'products.'],
+function (){
+    Route::get('index',[ProductController::class,'index'])->name('index');
+    Route::get('create',[ProductController::class,'create'])->name('create');
+    Route::post('store',[ProductController::class,'store'])->name('store');
+    Route::put('update',[ProductController::class,'update'])->name('update');
+    Route::delete('destroy/{id}',[ProductController::class,'destroy'])->name('destroy');
+    Route::get('show',[ProductController::class,'show'])->name('show');
+    Route::get('edit/{id}',[ProductController::class,'edit'])->name('edit');
+
+});
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -89,6 +89,9 @@
         </div>
     </div>
 </div>
+@if(session("success"))
+    <p>{{session("Success")}}
+@endif
 @endsection
   
 

@@ -7,6 +7,10 @@
 @csrf
 <input type="submit" value="add customer" class="btn btn-info mb-3"/>
 </form>
+<form action="{{route('products.create')}}" method="">
+@csrf
+<input type="submit" value="add product" class="btn btn-info mb-3"/>
+</form>
 <table border='2'>
     <tr>
         <th>Id</th>

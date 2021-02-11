@@ -7,7 +7,10 @@ return [
     'role' => [
          'admin' => 1,
         'manager' => 2,
-         'user' =>3
-    ]
+         'user' =>3,
+         
+    ],
+    'pagination' => 10,
+    
     ];
 ?>
