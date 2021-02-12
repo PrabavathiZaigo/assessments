@@ -25,6 +25,7 @@ Route::get('/', function () {
 });
 
 Route::get('index',[ProductsController::class,'index'])->name('index');
+Route::get('create',[ProductsController::class,'create'])->name('create');
 
 
 Route::group(['prefix' => 'admins', 'as' => 'admins.','middleware' => 'auth' ],

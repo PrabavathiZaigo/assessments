@@ -16,4 +16,8 @@ class ProductsController extends Controller
         $product = Product::orderBy('id','DESC')->paginate(config('roles.pagination'));
         return View::make('frontend.products',['product' =>$product]);
     }
+    public function create()
+    {
+       return View::make('frontend.create');
+    }
 }

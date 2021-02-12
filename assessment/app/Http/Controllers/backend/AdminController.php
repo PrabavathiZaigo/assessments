@@ -18,13 +18,17 @@ class AdminController extends Controller
     public function store(Request $request)
     {
        $request->validate([
-           'name' => 'required',
+           'name' => 'required|min:3|max:10',
            'email' => 'required|unique:users',
            'password' => 'required',
+           'phone_number' => 'required|digits:10',
        ],[
            'name.required' => 'Enter your Name',
+           'name.min' => 'Name should be atleast :min characters',
+           'name.max' => 'Name should not be greater than :max characters',
            'email.required' => 'Enter Your email',
            'password.required' => 'Enter your password',
+           'phone_number.required' => 'Enter your phone number',
        ]);
        $admin = new User;
        $admin->name=$request->name;
@@ -38,7 +42,7 @@ class AdminController extends Controller
     public function index()
     {
         //dd(config('roles.pagination'));
-        $model = User::orderBy('id','DESC')->where('role_id',1)->paginate(config('roles.pagination'));
+        $model = User::orderBy('id','DESC')->where('role_id',config('roles.role.admin'))->paginate(config('roles.pagination'));
         
         return View::make('backend.admin.index',['model' =>$model]);
 
@@ -51,13 +55,17 @@ class AdminController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|min:3|max:10',
             'email' => 'required|unique:users,email,'.$request->id,
             'password' => 'required',
+            'phone_number' => 'required|digits:10',
         ],[
             'name.required' => 'Enter your Name',
+            'name.min' => 'Name should be atleast :min characters',
+            'name.max' => 'Name should not be greater than :max characters',
             'email.required' => 'Enter Your email',
-            'password.required' => 'Enter your password'
+            'password.required' => 'Enter your password',
+            'phone_number.required' => 'Enter your phone number',
         ]);
         $update = User::find($request->id);
         $update->name=$request->name;
@@ -71,7 +79,9 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $delete = User::find($id);
-        $delete->delete();
+        if(!empty($delete)){
+            $delete->delete();
+        }
         return redirect()->route('admins.index')->with("success","Done");
     }
 }

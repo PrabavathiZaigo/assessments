@@ -17,13 +17,17 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|min:3|max:10',
             'email' => 'required|unique:users',
             'password' => 'required',
+            'phone_number' => 'required|digits:10',
         ],[
             'name.required' => 'Enter your Name',
+            'name.min' => 'Name should be atleast :min characters',
+            'name.max' => 'Name should not be greater than :max characters',
             'email.required' => 'Enter Your email',
-            'password.required' => 'Enter your password'
+            'password.required' => 'Enter your password',
+            'phone_number.required' => 'Enter your phone number',
         ]);
         $customer = new User;
         $customer->name=$request->name;
@@ -48,13 +52,17 @@ class CustomerController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|min:3|max:10',
             'email' => 'required|unique:users,email,'.$request->id,
             'password' => 'nullable',
+            'phone_number' => 'required|digits:10',
         ],[
             'name.required' => 'Enter your Name',
+            'name.min' => 'Name should be atleast :min characters',
+            'name.max' => 'Name should not be greater than :max characters',
             'email.required' => 'Enter Your email',
-            'password.required' => 'Enter your password'
+            'password.required' => 'Enter your password',
+            'phone_number.required' => 'Enter your phone number',
         ]);
         $update = User::find($request->id);
         $update->name=$request->name;
@@ -68,7 +76,9 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $delete = User::find($id);
+        if(!empty($delete)){
         $delete->delete();
+        }
         return redirect()->route('customers.index')->with("success","Done");
     }
 }

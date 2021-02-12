@@ -10,46 +10,42 @@
 </style>
  
 <div class="container">
-
-    <div class="row">
+  <div class="row" style="margin-top: 3%;">
     @forelse($product as $k => $products)
-        <div class="col-md-4">
-        
+      <div class="col-md-4">
+        <div class="card" style="width:350px; height:400px;">
+          <div class="body">
+            <div class="caption">
               <div class="thumbnail">
-                <img src="http://tech.firstpost.com/wp-content/uploads/2014/09/Apple_iPhone6_Reuters.jpg" alt="" class="img-responsive">
-                
-                <div class="caption">
-               
-                  <h4 class="">{{$products->product_name}}</h4>
-                  <h4 class="">{{$products->sku}}</h4>
-                  <h4 class="">{{$products->quantity}}</h4>
-                  <h4><a href="#">Mobile Product</a></h4>
-                  <img  src="{{ asset('storage/images/'.$products->product_image) }}" style="width:50%;  height:70px;"/>
-                </div>
-                <div class="ratings">
-                  <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                     (15 reviews)
-                  </p>
-                  
-                </div>
-                
-                <div class="space-ten"></div>
+                <h4 class="">{{$products->product_name}}</h4>
+                <h4 class="">{{$products->sku}}</h4>
+                <h4 class="">{{$products->quantity}}</h4>
+                <h4><a href="#">Mobile Product</a></h4>
+                <img  src="{{ asset('storage/images/'.$products->product_image) }}" style="width:50%;  height:70px;"/>
+              
+              <div class="ratings">
+                <p>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  (15 reviews)
+                </p>
+              </div>
+              <div class="space-ten"></div>
                 <div class="btn-ground text-center">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>BUY</button>
-                    
-                    
+                  <button type="button" class="btn "><i class="fa fa-shopping-cart"></i><a href="{{route('create')}}">BUY</a></button>
                 </div>
-                <div class="space-ten"></div>
+              </div>
               </div>
             </div>
+          </div>
+        </div>
+      @empty
+      @endforelse
+      </div>
+      </div>
     </div>
-    
-</div>
-
-  @empty
-@endforelse 
+    </div>
+    </div>

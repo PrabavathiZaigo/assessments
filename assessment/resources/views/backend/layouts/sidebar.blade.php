@@ -44,19 +44,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('admins.index')}}" class="nav-link active">
+                <a href="{{route('admins.index')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Admin</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('managers.index')}}" class="nav-link">
+                <a href="{{route('managers.index')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Manager</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('customers.create')}}" class="nav-link">
+                <a href="{{route('customers.create')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Customer</p>
                 </a>
