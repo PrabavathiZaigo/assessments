@@ -25,10 +25,11 @@ Route::get('/', function () {
 });
 
 Route::get('index',[ProductsController::class,'index'])->name('index');
-Route::get('create',[ProductsController::class,'create'])->name('create');
+Route::get('create',[ProductsController::class,'create'])->name('create')->middleware('auth');
+Route::post('store',[ProductsController::class,'store'])->name('store');
 
 
-Route::group(['prefix' => 'admins', 'as' => 'admins.','middleware' => 'auth' ],
+Route::group(['prefix' => 'admins', 'as' => 'admins.','middleware' => ['auth','role']],
 function (){
     Route::get('index',[AdminController::class,'index'])->name('index');
     Route::get('create',[AdminController::class,'create'])->name('create');
@@ -41,7 +42,7 @@ function (){
 });
 
 
-Route::group(['prefix' => 'managers', 'as' => 'managers.'],
+Route::group(['prefix' => 'managers', 'as' => 'managers.', 'middleware' => ['auth','role']],
 function (){
     Route::get('index',[ManagerController::class,'index'])->name('index');
     Route::get('create',[ManagerController::class,'create'])->name('create');
@@ -54,7 +55,7 @@ function (){
 });
 
 
-Route::group(['prefix' => 'customers', 'as' => 'customers.'],
+Route::group(['prefix' => 'customers', 'as' => 'customers.', 'middleware' => ['auth',]],
 function (){
     Route::get('index',[CustomerController::class,'index'])->name('index');
     Route::get('create',[CustomerController::class,'create'])->name('create');
